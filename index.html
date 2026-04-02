@@ -688,4 +688,551 @@
     inset: 0;
     background: linear-gradient(135deg, rgba(255,45,32,0.2), rgba(255,215,0,0.1));
     opacity: 0;
-    transition: opacity 0.3s
+    transition: opacity 0.3s;
+  }
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  .gallery-label {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background: rgba(0,0,0,0.7);
+    color: var(--gold);
+    font-size: 11px;
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 700;
+    letter-spacing: 2px;
+    padding: 4px 10px;
+  }
+
+  /* ===== TICKER ===== */
+  .ticker-wrap {
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--red), var(--red2));
+    padding: 12px 0;
+    position: relative;
+  }
+  .ticker-wrap::before, .ticker-wrap::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0;
+    width: 60px;
+    z-index: 2;
+  }
+  .ticker-wrap::before { left: 0; background: linear-gradient(90deg, var(--red), transparent); }
+  .ticker-wrap::after { right: 0; background: linear-gradient(-90deg, var(--red), transparent); }
+  .ticker-content {
+    display: flex;
+    gap: 48px;
+    animation: ticker 20s linear infinite;
+    white-space: nowrap;
+    width: max-content;
+  }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .ticker-item {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .ticker-item::before { content: '◆'; font-size: 8px; color: rgba(255,255,255,0.5); }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--dark2);
+    border-top: 1px solid var(--border);
+    padding: 48px 40px 32px;
+    max-width: 100%;
+  }
+  .footer-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 40px;
+  }
+  .footer-brand .logo {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--gold);
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+    display: block;
+  }
+  .footer-brand .logo span { color: var(--red); }
+  .footer-brand p { color: var(--muted); font-size: 14px; line-height: 1.8; max-width: 280px; }
+  .footer-heading {
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .footer-heading::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    transition: color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .footer-links a::before { content: '›'; color: var(--gold); }
+  .footer-links a:hover { color: var(--white); }
+  .footer-bottom {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .footer-copy { color: var(--muted); font-size: 13px; font-family: 'Rajdhani', sans-serif; }
+  .footer-copy span { color: var(--gold); }
+  .footer-socials { display: flex; gap: 12px; }
+  .social-btn {
+    width: 36px;
+    height: 36px;
+    background: rgba(255,215,0,0.08);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 16px;
+    transition: background 0.2s, color 0.2s;
+    clip-path: polygon(4px 0%, 100% 0%, calc(100% - 4px) 100%, 0% 100%);
+  }
+  .social-btn:hover { background: var(--gold); color: var(--dark); }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 900px) {
+    nav { padding: 16px 20px; }
+    .nav-links { display: none; }
+    section { padding: 60px 20px; }
+    #about { grid-template-columns: 1fr; gap: 40px; }
+    .about-visual { margin: 0 auto; }
+    .achievements-grid { grid-template-columns: 1fr 1fr; }
+    .members-grid { grid-template-columns: 1fr 1fr; }
+    .footer-inner { grid-template-columns: 1fr; gap: 32px; }
+    .ig-posts-preview { grid-template-columns: repeat(2, 1fr); }
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 600px) {
+    .achievements-grid { grid-template-columns: 1fr; }
+    .members-grid { grid-template-columns: 1fr 1fr; }
+    .hero-stats { gap: 24px; flex-wrap: wrap; }
+    .hero-btns { flex-direction: column; align-items: center; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .gallery-item.wide { grid-column: span 1; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">PRIME <span>X</span> TITLE</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#achievements">Kills</a></li>
+    <li><a href="#members">Squad</a></li>
+    <li><a href="#instagram">Follow</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('instagram').scrollIntoView({behavior:'smooth'})">Follow Us</button>
+</nav>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-particles" id="particles"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      Free Fire India · Active Guild
+    </div>
+
+    <h1 class="hero-title">
+      <span class="prime">PRIME </span><span class="x">X</span><br>
+      <span class="title">TITLE</span>
+    </h1>
+
+    <p class="hero-sub">Booyah or Die Trying</p>
+
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num" id="counter1">0</div>
+        <div class="hero-stat-lbl">Guild Members</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num" id="counter2">0</div>
+        <div class="hero-stat-lbl">Booyahs</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-num" id="counter3">0</div>
+        <div class="hero-stat-lbl">Kill Record</div>
+      </div>
+    </div>
+
+    <div class="hero-btns">
+      <a href="#members" class="btn-primary">⚔ Meet The Squad</a>
+      <a href="#instagram" class="btn-secondary">📸 Follow Us</a>
+    </div>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</div>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker-content">
+    <div class="ticker-item">Prime X Title</div>
+    <div class="ticker-item">Free Fire India</div>
+    <div class="ticker-item">Ranked Booyah</div>
+    <div class="ticker-item">Elite Guild</div>
+    <div class="ticker-item">Top Squad</div>
+    <div class="ticker-item">Prime X Title</div>
+    <div class="ticker-item">Free Fire India</div>
+    <div class="ticker-item">Ranked Booyah</div>
+    <div class="ticker-item">Elite Guild</div>
+    <div class="ticker-item">Top Squad</div>
+    <div class="ticker-item">Prime X Title</div>
+    <div class="ticker-item">Free Fire India</div>
+    <div class="ticker-item">Ranked Booyah</div>
+    <div class="ticker-item">Elite Guild</div>
+    <div class="ticker-item">Top Squad</div>
+    <div class="ticker-item">Prime X Title</div>
+    <div class="ticker-item">Free Fire India</div>
+    <div class="ticker-item">Ranked Booyah</div>
+    <div class="ticker-item">Elite Guild</div>
+    <div class="ticker-item">Top Squad</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about" style="max-width: 1200px; margin: 0 auto;">
+  <div class="about-visual">
+    <div class="about-hex">
+      <div class="hex-ring"></div>
+      <div class="hex-ring"></div>
+      <div class="hex-ring"></div>
+      <div class="hex-center">
+        <div class="hex-logo">PX<span>T</span></div>
+        <div class="hex-sub">Est. 2023</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-text">
+    <div class="section-label">Who We Are</div>
+    <h2 class="section-title">PRIME <span>X TITLE</span> GUILD</h2>
+    <p class="section-desc">We are an elite Free Fire guild from India — built on precision, team synergy, and the hunger to win every last match. No casual. No excuses. Only Booyah.</p>
+
+    <div class="about-features">
+      <div class="feature-row">
+        <div class="feature-icon">🏆</div>
+        <div class="feature-text">Top-Tier Ranked Players <small>Grandmaster & Diamond rated members</small></div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">⚔</div>
+        <div class="feature-text">Guild Wars Specialist <small>Undefeated in multiple clan battles</small></div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🎯</div>
+        <div class="feature-text">Strategy-First Gameplay <small>Coordinated drops, rotations & clutch plays</small></div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🇮🇳</div>
+        <div class="feature-text">Proudly Indian Guild <small>Representing India in the Free Fire community</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements" style="max-width: 1200px; margin: 0 auto; padding-top: 0;">
+  <div class="section-label">Our Legacy</div>
+  <h2 class="section-title">HALL OF <span>GLORY</span></h2>
+
+  <div class="achievements-grid">
+    <div class="achievement-card">
+      <div class="achievement-rank">Season 2024</div>
+      <div class="achievement-title">Guild Wars Champion</div>
+      <div class="achievement-desc">Defeated 12 rival guilds in back-to-back guild war events</div>
+      <div class="achievement-icon">🏆</div>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-rank">Ranked Season</div>
+      <div class="achievement-title">Grandmaster Peak</div>
+      <div class="achievement-desc">Multiple members reached Grandmaster tier in same season</div>
+      <div class="achievement-icon">💎</div>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-rank">Milestone</div>
+      <div class="achievement-title">500+ Booyahs</div>
+      <div class="achievement-desc">Guild collectively crossed 500 Booyahs across all modes</div>
+      <div class="achievement-icon">🔥</div>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-rank">Kill Record</div>
+      <div class="achievement-title">32 Kills Solo</div>
+      <div class="achievement-desc">Guild leader's legendary solo squad wipe with 32 eliminations</div>
+      <div class="achievement-icon">⚔</div>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-rank">Community</div>
+      <div class="achievement-title">1K+ Followers</div>
+      <div class="achievement-desc">Growing Instagram community of fellow Free Fire fans</div>
+      <div class="achievement-icon">📱</div>
+    </div>
+    <div class="achievement-card">
+      <div class="achievement-rank">Fastest</div>
+      <div class="achievement-title">4-Min Drop Clear</div>
+      <div class="achievement-desc">Record fastest entire drop zone wipe in under 4 minutes</div>
+      <div class="achievement-icon">⚡</div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBERS -->
+<section id="members" style="max-width: 1200px; margin: 0 auto;">
+  <div class="members-header">
+    <div>
+      <div class="section-label">The Elite</div>
+      <h2 class="section-title">OUR <span>SQUAD</span></h2>
+    </div>
+    <a href="#instagram" class="btn-secondary" style="font-size: 13px; padding: 10px 20px;">Join Guild ›</a>
+  </div>
+
+  <div class="members-grid">
+    <div class="member-card leader">
+      <div class="member-avatar" style="background: linear-gradient(135deg, #1a0a00, #3d1500);">
+        <span style="color: var(--gold);">P</span>
+      </div>
+      <div class="member-info">
+        <div class="member-name">PrimeX Leader</div>
+        <div class="member-role">Guild Master</div>
+        <div class="member-stats">
+          <div class="m-stat"><div class="m-stat-v">GM</div><div class="m-stat-l">Rank</div></div>
+          <div class="m-stat"><div class="m-stat-v">32</div><div class="m-stat-l">Best Kill</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-avatar" style="background: linear-gradient(135deg, #0a0a1a, #15153d);">X</div>
+      <div class="member-info">
+        <div class="member-name">X Sniper</div>
+        <div class="member-role">Sniper Elite</div>
+        <div class="member-stats">
+          <div class="m-stat"><div class="m-stat-v">D1</div><div class="m-stat-l">Rank</div></div>
+          <div class="m-stat"><div class="m-stat-v">28</div><div class="m-stat-l">Best Kill</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-avatar" style="background: linear-gradient(135deg, #0a1a0a, #153d15);">T</div>
+      <div class="member-info">
+        <div class="member-name">TitleKing</div>
+        <div class="member-role">Rusher</div>
+        <div class="member-stats">
+          <div class="m-stat"><div class="m-stat-v">D3</div><div class="m-stat-l">Rank</div></div>
+          <div class="m-stat"><div class="m-stat-v">24</div><div class="m-stat-l">Best Kill</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="member-card">
+      <div class="member-avatar" style="background: linear-gradient(135deg, #1a0a1a, #3d153d);">R</div>
+      <div class="member-info">
+        <div class="member-name">Reaper9</div>
+        <div class="member-role">Support</div>
+        <div class="member-stats">
+          <div class="m-stat"><div class="m-stat-v">P3</div><div class="m-stat-l">Rank</div></div>
+          <div class="m-stat"><div class="m-stat-v">19</div><div class="m-stat-l">Best Kill</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<div style="padding: 0 40px 100px; max-width: 1200px; margin: 0 auto;">
+  <section id="instagram" style="padding: 0;">
+    <div class="ig-section">
+      <span class="ig-icon">📸</span>
+      <h2 class="ig-title">JOIN OUR JOURNEY</h2>
+      <div class="ig-handle">@primextitle</div>
+      <p class="ig-desc">Follow us on Instagram for daily highlights, Booyah celebrations, clutch moments, tournament updates, and exclusive behind-the-scenes content from Prime X Title.</p>
+      <a href="https://www.instagram.com/primextitle/?utm_source=ig_web_button_share_sheet" target="_blank" class="ig-follow-btn">
+        📸 Follow @primextitle on Instagram
+      </a>
+      <div class="ig-posts-preview">
+        <div class="ig-post">🔥 Clutch</div>
+        <div class="ig-post">🏆 Win</div>
+        <div class="ig-post">⚔ GW</div>
+        <div class="ig-post">🎮 Live</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- GALLERY -->
+<section id="gallery" style="max-width: 1200px; margin: 0 auto; padding-top: 0; padding-bottom: 100px;">
+  <div class="section-label">Moments</div>
+  <h2 class="section-title">BATTLE <span>GALLERY</span></h2>
+
+  <div class="gallery-grid">
+    <div class="gallery-item tall">
+      <div class="gallery-overlay"></div>
+      <span>🏆</span>
+      <div class="gallery-label">Guild War Victory</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-overlay"></div>
+      <span>🔥</span>
+      <div class="gallery-label">Booyah Moment</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-overlay"></div>
+      <span>⚔</span>
+      <div class="gallery-label">Squad Wipe</div>
+    </div>
+    <div class="gallery-item wide">
+      <div class="gallery-overlay"></div>
+      <span>🎯 &nbsp; Top Squad Drop</span>
+      <div class="gallery-label">Drop Zone</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-overlay"></div>
+      <span>💎</span>
+      <div class="gallery-label">Ranked Push</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-overlay"></div>
+      <span>⚡</span>
+      <div class="gallery-label">Speed Rush</div>
+    </div>
+    <div class="gallery-item">
+      <div class="gallery-overlay"></div>
+      <span>🎮</span>
+      <div class="gallery-label">Live Session</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo">PRIME <span>X</span> TITLE</span>
+      <p>India's premier Free Fire guild. We play hard, we play smart, and we never leave without a Booyah. Join the elite or face us in battle.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Navigate</div>
+      <ul class="footer-links">
+        <li><a href="#about">About Guild</a></li>
+        <li><a href="#achievements">Achievements</a></li>
+        <li><a href="#members">Squad</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-heading">Connect</div>
+      <ul class="footer-links">
+        <li><a href="https://www.instagram.com/primextitle" target="_blank">Instagram</a></li>
+        <li><a href="#instagram">Follow Us</a></li>
+        <li><a href="#members">Join Guild</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-copy">© 2025 <span>Prime X Title</span> · Free Fire Guild · India 🇮🇳</div>
+    <div class="footer-socials">
+      <a href="https://www.instagram.com/primextitle" target="_blank" class="social-btn">📸</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// PARTICLES
+const container = document.getElementById('particles');
+for (let i = 0; i < 40; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.left = Math.random() * 100 + '%';
+  p.style.animationDelay = Math.random() * 8 + 's';
+  p.style.animationDuration = (6 + Math.random() * 8) + 's';
+  const dx = (Math.random() - 0.5) * 200;
+  p.style.setProperty('--dx', dx + 'px');
+  p.style.width = (Math.random() > 0.7 ? 3 : 2) + 'px';
+  p.style.height = p.style.width;
+  container.appendChild(p);
+}
+
+// COUNTERS
+function animateCounter(el, target, suffix='') {
+  let current = 0;
+  const duration = 2000;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    current = Math.min(current + step, target);
+    el.textContent = Math.floor(current) + suffix;
+    if (current >= target) clearInterval(timer);
+  }, 16);
+}
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      animateCounter(document.getElementById('counter1'), 50, '+');
+      animateCounter(document.getElementById('counter2'), 500, '+');
+      animateCounter(document.getElementById('counter3'), 32);
+      observer.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+observer.observe(document.getElementById('hero'));
+
+// SCROLL REVEAL
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.achievement-card, .member-card, .feature-row, .gallery-item').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(24px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease, border-color 0.2s';
+  revealObserver.observe(el);
+});
+</script>
+</body>
+</html>
